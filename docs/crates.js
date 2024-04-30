@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["cargo_auto_template_new_cli","cargo_auto_template_new_cli_lib"];
