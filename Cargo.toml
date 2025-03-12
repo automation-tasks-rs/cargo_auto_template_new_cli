@@ -11,6 +11,7 @@ readme = "README.md"
 repository = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters, at most 5 keywords per crate
 keywords = ["maintained", "work-in-progress", "rustlang"]
+# allowed categories are listed here <https://crates.io/category_slugs>
 categories = ["command-line-interface"]
 # publish as a cargo tool. Only this files.
 publish = false
@@ -21,10 +22,10 @@ include = [
     "src/*"
 ]
 
-[dependencies]
 # SemVer rules: Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
-# WARNING: Although dependecies in Cargo.toml look like a specific version of the crate, they are just like a carret version (^x.y.z) and actually specify 
+# WARNING: Although dependencies in Cargo.toml look like a specific version of the crate, they are just like a caret version (^x.y.z) and actually specify 
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
+[dependencies]
 log = "0.4"
 pretty_env_logger="0.5.0"
 thiserror = "1.0.30"
