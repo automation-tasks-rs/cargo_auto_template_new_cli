@@ -176,8 +176,6 @@ pub(crate) fn description_and_topics_to_github() {
 
     if is_old_metadata_different {
         // get data from GitHub
-        dbg!(&github_owner_or_organization);
-        dbg!(&repo_name);
         let json = send_to_github_api_with_secret_token(github_api_get_repository(&github_owner_or_organization, &repo_name)).unwrap();
 
         // get just the description and topis from json
