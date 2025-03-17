@@ -23,11 +23,13 @@ jobs:
 
     - name: Run cache for rust dependencies
       uses: Swatinem/rust-cache@v2.7.7
+      uses: Swatinem/rust-cache@v2.7.7
 
     - name: Configure sccache
       run: printf "RUSTC_WRAPPER=sccache\n" >> $GITHUB_ENV; printf "SCCACHE_GHA_ENABLED=true\n" >> $GITHUB_ENV
 
     - name: Run sccache-cache for artifacts
+      uses: mozilla-actions/sccache-action@v0.0.8
       uses: mozilla-actions/sccache-action@v0.0.8
       
     - name: cargo clippy --no-deps
@@ -40,11 +42,12 @@ jobs:
 
     - name: Cache for automation tasks
       uses: actions/cache@v4.2.2
+      uses: actions/cache@v4.2.2
       with:
         path: |
-          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/.file_hashes.json 
-          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
-          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.toml
+          automation_tasks_rs/.file_hashes.json 
+          automation_tasks_rs/target 
+          automation_tasks_rs/Cargo.toml
         key: automation_tasks_rs
 
     - name: cargo auto build

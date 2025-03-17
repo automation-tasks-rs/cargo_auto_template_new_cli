@@ -4,9 +4,13 @@
 
 mod cargo_auto_github_api_mod;
 mod encrypt_decrypt_with_ssh_key_mod;
+mod cargo_auto_github_api_mod;
+mod encrypt_decrypt_with_ssh_key_mod;
 
 use cargo_auto_github_api_mod as cgl;
+use cargo_auto_github_api_mod as cgl;
 use cargo_auto_lib as cl;
+use encrypt_decrypt_with_ssh_key_mod as ende;
 use encrypt_decrypt_with_ssh_key_mod as ende;
 
 use cl::GREEN;
@@ -21,6 +25,7 @@ use cl::ShellCommandLimitedDoubleQuotesSanitizerTrait;
 // region: library with basic automation tasks
 
 fn main() {
+    std::panic::set_hook(Box::new(panic_set_hook));
     std::panic::set_hook(Box::new(panic_set_hook));
     tracing_init();
     cl::exit_if_not_run_in_rust_project_root_directory();
@@ -138,7 +143,10 @@ fn print_help() {
         r#"
   {YELLOW}Welcome to cargo-auto !{RESET}
   {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
+  {YELLOW}Welcome to cargo-auto !{RESET}
+  {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
+  {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
   {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
 {GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
 {GREEN}cargo auto release{RESET} - {YELLOW}builds the crate in release mode, fmt, increment version{RESET}
@@ -152,7 +160,18 @@ fn print_help() {
   {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
   {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
   {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+  {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+  {YELLOW}<https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
+  {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+  {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
+  {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
+  {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+  {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
+  {YELLOW}You need the API secret_token for publishing. Get the secret_token on <https://crates.io/settings/tokens>.{RESET}
+  {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
+  {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+  {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
   {YELLOW}You need the API secret_token for publishing. Get the secret_token on <https://crates.io/settings/tokens>.{RESET}
   {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
   {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
@@ -162,7 +181,12 @@ fn print_help() {
   {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
   {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
   {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+  {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
+  {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
+  {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+  {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 
+  {YELLOW}© 2025 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
   {YELLOW}© 2025 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
@@ -238,13 +262,9 @@ fn task_release() {
     cl::run_shell_command_static("cargo clippy --no-deps").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
 
-    #[cfg(target_family = "unix")]
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)
-        .unwrap_or_else(|e| panic!("{e}"))
-        .arg("{package_name}", &cargo_toml.package_name())
-        .unwrap_or_else(|e| panic!("{e}"))
-        .run()
-        .unwrap_or_else(|e| panic!("{e}"));
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
         r#"
@@ -378,8 +398,8 @@ fn task_publish_to_crates_io() {
   {YELLOW}Add the dependency to your Rust project and check how it works.{RESET}
 {GREEN}{package_name} = "{version}"{RESET}
 
-  {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, {RESET}
-  {YELLOW}Then create the GitHub Release {tag_name_version}.{RESET}
+    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
+    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );
@@ -425,32 +445,32 @@ fn task_github_new_release() {
     // region: upload asset only for executables, not for libraries
 
     let release_id = json_value.get("id").unwrap().as_i64().unwrap().to_string();
-    println!("  {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
-    // Linux executable binary tar-gz-ed compress files tar.gz
-    let executable_path = format!("target/release/{repo_name}");
-    if std::fs::exists(&executable_path).unwrap(){
-        let compressed_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
+    println!(
+        "
+        {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
+    "
+    );
+    // compress files tar.gz
+    let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .arg("{executable_path_sanitized_for_double_quote}", &executable_path)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .run()
-            .unwrap_or_else(|e| panic!("{e}"));
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{repo_name_sanitized_for_double_quote}", &repo_name).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
-        // upload asset
-        cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &compressed_name);
+    // upload asset
+    cgl::github_api_upload_asset_to_release(&github_client, &github_owner, &repo_name, &release_id, &tar_name);
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{compressed_name_sanitized_for_double_quote}" "#)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .run()
-            .unwrap_or_else(|e| panic!("{e}"));
-        println!(r#"  {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}"#);
-    }
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
+
+    println!(
+        r#"
+    {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
+    "#
+    );
+
     // endregion: upload asset only for executables, not for libraries
 
     println!(r#"{GREEN}https://github.com/{github_owner}/{repo_name}/releases{RESET} "#);
