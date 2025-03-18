@@ -142,7 +142,6 @@ fn print_help() {
   {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
   {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
-  {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
 {GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
 {GREEN}cargo auto release{RESET} - {YELLOW}builds the crate in release mode, fmt, increment version{RESET}
 {GREEN}cargo auto doc{RESET} - {YELLOW}builds the docs, copy to docs directory{RESET}
