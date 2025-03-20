@@ -138,8 +138,6 @@ fn print_help() {
         r#"
   {YELLOW}Welcome to cargo-auto !{RESET}
   {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
-  {YELLOW}Welcome to cargo-auto !{RESET}
-  {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
   {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
 {GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
@@ -165,7 +163,7 @@ fn print_help() {
   {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
   {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 
-  {YELLOW}© 2025 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
+  {YELLOW}© 2025 bestia.dev  MIT License github.com/automation--tasks--rs/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();
