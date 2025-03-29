@@ -5,7 +5,6 @@
         "titleBar.activeBackground": "#a81c1c",
         "titleBar.inactiveBackground": "#630b0bcc"
     },
-    "editor.rulers": [100],
     "spellright.language": [
         "en"
     ],
@@ -27,6 +26,7 @@
         "camino",
         "chrono",
         "commitish",
+        "creds",
         "CRUSTDE",
         "decryptor",
         "encryptor",

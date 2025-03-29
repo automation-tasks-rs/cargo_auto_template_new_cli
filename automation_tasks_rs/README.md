@@ -24,7 +24,6 @@ code automation--tasks--rs
 ```
 
 Don't put any secrets like passwords, passphrases, or tokens here, because this helper project is pushed to the remote repository together with the main Rust project.  
-cargo
 
 ## cargo-auto
 
