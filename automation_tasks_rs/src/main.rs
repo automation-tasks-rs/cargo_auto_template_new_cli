@@ -238,7 +238,7 @@ fn task_publish_to_crates_io() {
 }
 
 /// create a new release on github
-pub fn task_github_new_release() {
+fn task_github_new_release() {
     gn::task_github_new_release();
     println!(r#"  {YELLOW}No more automation tasks. {RESET}"#);
 }
