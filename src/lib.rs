@@ -9,8 +9,8 @@
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo_auto_template_new_cli
 //!
-//! **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-//! ***version: 0.0.5 date: 2025-03-17 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+//! **Basic Rust project template for CLI and library, more than just -cargo new hello-**  
+//! ***version: 0.0.8 date: 2025-03-29 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![work-in-progress](https://img.shields.io/badge/work_in_progress-yellow)

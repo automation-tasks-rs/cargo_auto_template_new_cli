@@ -40,9 +40,7 @@ fn main() {
             }
             None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
-        _ => println!(
-            "{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"
-        ),
+        _ => println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
     }
 }
 
@@ -68,10 +66,7 @@ fn print_help() {
 /// print my name
 fn print_greet_name(greet_name: &str) {
     // call the function from the `lib.rs`
-    println!(
-        "{}",
-        cargo_auto_template_new_cli_lib::format_hello_phrase(greet_name)
-    );
+    println!("{}", cargo_auto_template_new_cli_lib::format_hello_phrase(greet_name));
 }
 
 /// print my name upper, can return error

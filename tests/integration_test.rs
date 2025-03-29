@@ -5,10 +5,7 @@ use cargo_auto_template_new_cli_lib::*;
 #[test]
 fn integration_test_01() {
     assert_eq!(format_hello_phrase("abcd"), "Hello abcd!");
-    assert_eq!(
-        format_upper_hello_phrase("abcd").expect("error"),
-        "Hello ABCD!"
-    );
+    assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
 }
 
 #[test]
