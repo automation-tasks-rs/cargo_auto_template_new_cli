@@ -5,6 +5,7 @@
         "titleBar.activeBackground": "#a81c1c",
         "titleBar.inactiveBackground": "#630b0bcc"
     },
+    "editor.rulers": [100],
     "spellright.language": [
         "en"
     ],
@@ -25,12 +26,14 @@
         "bestiadev",
         "camino",
         "chrono",
+        "commitish",
         "CRUSTDE",
         "decryptor",
         "encryptor",
         "ende",
         "endregion",
         "keygen",
+        "lizs",
         "Nazdravlje",
         "new_cli",
         "octocrab",
