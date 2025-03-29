@@ -3,6 +3,7 @@
 // region: library and modules with basic automation tasks
 
 mod build_cli_bin_mod;
+mod build_lib_mod;
 mod cargo_auto_github_api_mod;
 mod encrypt_decrypt_with_ssh_key_mod;
 mod generic_functions_mod;
