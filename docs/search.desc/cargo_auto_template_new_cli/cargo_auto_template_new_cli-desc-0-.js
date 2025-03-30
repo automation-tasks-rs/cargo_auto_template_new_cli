@@ -1,0 +1,1 @@
+searchState.loadedDescShard("cargo_auto_template_new_cli", 0, "src/bin/cargo_auto_template_new_cli/main.rs\nentry point into the bin-executable\nprint my name\nprint help\nprint my name upper, can return error")
