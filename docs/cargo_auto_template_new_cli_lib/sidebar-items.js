@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["GREEN","RED","RESET","YELLOW"],"enum":["LibraryError"],"fn":["format_hello_phrase","format_upper_hello_phrase"],"mod":["hello_mod"]};
