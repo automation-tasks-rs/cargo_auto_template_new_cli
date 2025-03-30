@@ -97,7 +97,7 @@ tar -vf tmp/template.tar --delete target
 tar -vf tmp/template.tar --delete Cargo.lock
 
 gzip tmp/template.tar
-tar --exclude='target' -czvf tmp/automation_tasks_rs.tar.gz automation_tasks_rs
+tar --exclude='target' --exclude='.file_hashes.json' --exclude='Cargo.lock' -czvf tmp/automation_tasks_rs.tar.gz automation_tasks_rs
 ```
 
 Then manually create a GitHub release and upload the tar.
