@@ -84,15 +84,23 @@ In the tests we don't want to work with Error handling. There, instead of `.unwr
 ## Template release
 
 Cargo-auto will download the template release from:
-<https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/download/v1.0.0/template.tar.gz>
-
+<https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/download/latest/template.tar.gz>  
+Create also a separate template for just automation_tasks_rs.  
 To create this release use the commands:
 
 ```bash
-git archive -o template.tar HEAD
+mkdir -p tmp
+git archive -o tmp/template.tar HEAD
 # delete directory docs
-tar -vf template.tar --delete docs
-gzip template.tar
+tar -vf tmp/template.tar --delete docs
+gzip tmp/template.tar
+tar --exclude='target' -czvf tmp/automation_tasks_rs.tar.gz automation_tasks_rs
 ```
 
 Then manually create a GitHub release and upload the tar.
+Then remove the temporary files.
+
+```bash
+rm tmp/template.tar.gz
+rm tmp/automation_tasks_rs.tar.gz
+```
