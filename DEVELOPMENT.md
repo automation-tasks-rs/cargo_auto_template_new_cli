@@ -91,8 +91,11 @@ To create this release use the commands:
 ```bash
 mkdir -p tmp
 git archive -o tmp/template.tar HEAD
-# delete directory docs
+# delete directory docs and target
 tar -vf tmp/template.tar --delete docs
+tar -vf tmp/template.tar --delete target
+tar -vf tmp/template.tar --delete Cargo.lock
+
 gzip tmp/template.tar
 tar --exclude='target' -czvf tmp/automation_tasks_rs.tar.gz automation_tasks_rs
 ```
