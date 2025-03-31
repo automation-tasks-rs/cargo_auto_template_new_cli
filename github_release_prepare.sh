@@ -6,10 +6,10 @@ printf "\033[0;33m    Use git archive to tar the folder cargo_auto_template_new_
 mkdir -p tmp
 git archive -o tmp/template.tar HEAD
 printf "\033[0;33m    Delete directories and files not meant for upload. \033[0m\n"
-tar -f tmp/template.tar --delete docs > /dev/null
-tar -f tmp/template.tar --delete target > /dev/null
-tar -f tmp/template.tar --delete Cargo.lock > /dev/null
-tar -f tmp/template.tar --delete github_release_prepare.sh > /dev/null
+tar -f tmp/template.tar --delete docs 2> /dev/null
+tar -f tmp/template.tar --delete target 2> /dev/null
+tar -f tmp/template.tar --delete Cargo.lock 2> /dev/null
+tar -f tmp/template.tar --delete github_release_prepare.sh 2> /dev/null
 gzip -f tmp/template.tar
 
 printf "\n"
@@ -21,8 +21,7 @@ sed -i "s/automation--tasks--rs/automation-tasks-rs/g" "automation_tasks_rs/src/
 sed -i "s/github_bestia_dev_api_oauth2_ssh_1/github_api_oauth2_ssh_1/g" "automation_tasks_rs/github_api_config.json";
 
 printf "\033[0;33m    Compress to tar.gz \033[0m\n"
-tar -C automation_tasks_rs --exclude='target' --exclude='.file_hashes.json' --exclude='Cargo.lock' -cf tmp/automation_tasks_rs.tar.gz .
-printf "\033[0;33m    Delete directories and files not meant for upload. \033[0m\n"
+tar -C automation_tasks_rs --exclude='target' --exclude='.file_hashes.json' --exclude='Cargo.lock' -cf tmp/automation_tasks_rs.tar .
 gzip -f tmp/automation_tasks_rs.tar
 
 printf "\033[0;33m    Replace back strings automation--tasks--rs in files. \033[0m\n"
