@@ -1,6 +1,10 @@
 // generic_functions_mod.rs
 
-//! These functions does not usually change
+//! Generic functions that does not usually change.
+//!
+//! Don't change this code, so it can be updated regularly with
+//! cargo auto update_automation_tasks_rs
+//! If you want to customize it, copy the code into main.rs and modify it there.
 
 use crate::cgl;
 use crate::cl;

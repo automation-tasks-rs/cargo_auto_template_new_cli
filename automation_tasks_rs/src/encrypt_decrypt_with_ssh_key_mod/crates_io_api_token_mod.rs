@@ -2,6 +2,10 @@
 
 //! # decrypt crates.io api token from file or ask the user to input the access token, encrypt it and save into file
 //!
+//! Don't change this code, so it can be updated regularly with
+//! cargo auto update_automation_tasks_rs
+//! If you want to customize it, copy the code into main.rs and modify it there.
+//!
 //! Publish to crates.io needs the crates.io secret access_token. This is a secret important just like a password or even more.  
 //! There is the original "cargo login" function that saves this critical secret in plain text in `~/.cargo/credentials.toml`.  Plain-text for secrets in a well-known file is a big no-no. Every malware will just upload it in a millisecond.  
 //!

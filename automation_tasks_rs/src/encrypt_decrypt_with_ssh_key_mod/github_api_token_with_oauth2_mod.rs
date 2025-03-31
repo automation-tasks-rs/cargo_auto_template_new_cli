@@ -2,6 +2,10 @@
 
 //! # decrypt github api token from file or use the oauth2 device workflow to get the access token and encrypt it and save into file
 //!
+//! Don't change this code, so it can be updated regularly with
+//! cargo auto update_automation_tasks_rs
+//! If you want to customize it, copy the code into main.rs and modify it there.
+//!
 //! ## Secrets
 //!
 //! In this module there will be a lot of work with secrets.  

@@ -1,5 +1,11 @@
 // cargo_auto_github_api_mod
 
+//! Functions to work with GitHub api.
+//!
+//! Don't change this code, so it can be updated regularly with
+//! cargo auto update_automation_tasks_rs
+//! If you want to customize it, copy the code into main.rs and modify it there.
+
 #![allow(dead_code)]
 use cargo_auto_lib as cl;
 // traits must be in scope (Rust strangeness)
