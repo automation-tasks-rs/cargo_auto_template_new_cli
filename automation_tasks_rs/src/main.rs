@@ -113,13 +113,13 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd() {
     /*
-            println!(
-                r#"
-      {YELLOW}run examples:{RESET}
+        println!(
+            r#"
+    {YELLOW}run examples:{RESET}
     {GREEN}cargo run --example plantuml1{RESET}
-        "#
-            );
-        */
+    "#
+        );
+    */
 }
 
 /// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.
@@ -137,7 +137,7 @@ fn completion() {
             "commit_and_push",
             "publish_to_crates_io",
             "github_new_release",
-            "update_automation_tasks_rs"
+            "update_automation_tasks_rs",
         ];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
@@ -165,7 +165,7 @@ fn task_build() {
 {GREEN}./target/debug/{package_name} upper world{RESET}
   {YELLOW}If ok then{RESET}
 {GREEN}./target/debug/{package_name} upper WORLD{RESET}
-  {YELLOW}if ok then{RESET}
+  {YELLOW}if {package_name} ok then{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -185,7 +185,7 @@ fn task_release() {
 {GREEN}./target/release/{package_name} upper world{RESET}
   {YELLOW}If ok then{RESET}
 {GREEN}./target/release/{package_name} upper WORLD{RESET}
-  {YELLOW}if ok then{RESET}
+  {YELLOW}if {package_name} ok then{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -230,20 +230,24 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
-    let tag_name_version = crate::build_cli_bin_mod::task_publish_to_crates_io();
+    let _tag_name_version = crate::build_cli_bin_mod::task_publish_to_crates_io();
 
     println!(
         r#"
   {YELLOW}Now, write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
-  {YELLOW}Next, create the GitHub Release {tag_name_version}.{RESET}
+  {YELLOW}Next, create the GitHub Release.{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );
 }
 
-/// create a new release on github
+/// create a new release on github and uploads binary executables
 fn task_github_new_release() {
     gn::task_github_new_release();
-    println!(r#"  {YELLOW}No more automation tasks. {RESET}"#);
+    println!(
+        r#"  
+  {YELLOW}No more automation tasks. {RESET}
+"#
+    );
 }
 // endregion: tasks

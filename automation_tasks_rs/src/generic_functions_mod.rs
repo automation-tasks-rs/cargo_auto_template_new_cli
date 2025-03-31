@@ -183,19 +183,24 @@ pub fn task_github_new_release() {
     cl::create_new_version_in_releases_md(&release_name).unwrap();
 
     // Commit and push of modified Version in RELEASES.md
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-        r#"git add -A && git commit -m "{message_sanitized_for_double_quote}" "#,
-    )
-    .unwrap_or_else(|e| panic!("{e}"))
-    .arg("{message_sanitized_for_double_quote}", &release_name)
-    .unwrap_or_else(|e| panic!("{e}"))
-    .run()
-    .unwrap_or_else(|e| panic!("{e}"));
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git commit -m "{message_sanitized_for_double_quote}" "#)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{message_sanitized_for_double_quote}", &release_name)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
 
     cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
 
     // GitHub api call to create the Release
-    let request = cgl::github_api_create_new_release(&github_owner, &repo_name, &tag_name_version, &release_name, branch, &version_body_text);
+    let request = cgl::github_api_create_new_release(
+        &github_owner,
+        &repo_name,
+        &tag_name_version,
+        &release_name,
+        branch,
+        &version_body_text,
+    );
     let json_value = ende::github_api_token_with_oauth2_mod::send_to_github_api_with_secret_token(request).unwrap();
     // early exit on error
     if let Some(error_message) = json_value.get("message") {
@@ -250,17 +255,19 @@ pub fn task_github_new_release() {
     // podman exec --user=root crustde_vscode_cnt   apt-get install -y zip
     // compress file with zip because it is Windows
     let executable_path = format!("target/x86_64-pc-windows-gnu/release/{repo_name}.exe");
-    if std::fs::exists(&executable_path).unwrap(){
+    if std::fs::exists(&executable_path).unwrap() {
         let compressed_name = format!("{repo_name}-{tag_name_version}-x86_64-pc-windows-gnu.zip");
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"zip "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .arg("{executable_path_sanitized_for_double_quote}", &executable_path)
-            .unwrap_or_else(|e| panic!("{e}"))
-            .run()
-            .unwrap_or_else(|e| panic!("{e}"));
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+            r#"zip "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#,
+        )
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{executable_path_sanitized_for_double_quote}", &executable_path)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
 
         // upload asset
         cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &compressed_name);
