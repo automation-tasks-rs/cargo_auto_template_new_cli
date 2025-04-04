@@ -78,7 +78,13 @@
 <a href="#77" id="77">77</a>
 <a href="#78" id="78">78</a>
 <a href="#79" id="79">79</a>
-<a href="#80" id="80">80</a></pre></div><pre class="rust"><code><span class="doccomment">//! src/bin/cargo_auto_template_new_cli/main.rs
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a>
+<a href="#86" id="86">86</a></pre></div><pre class="rust"><code><span class="doccomment">//! src/bin/cargo_auto_template_new_cli/main.rs
 
 </span><span class="comment">// This `main.rs` is the code for the CLI application.
 // The build of this project will create the CLI application.
@@ -89,13 +95,16 @@
 // The `main.rs` uses the `anyhow` error library.
 // The `lib.rs` uses the `thiserror` library.
 
-// Linux terminal colors
+</span><span class="kw">mod </span>bin_cli_functions_mod;
+<span class="kw">use </span>bin_cli_functions_mod <span class="kw">as </span>cli;
+
+<span class="comment">// Linux terminal colors
 </span><span class="kw">use </span>cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
 
 <span class="doccomment">/// entry point into the bin-executable
 </span><span class="kw">fn </span>main() {
-    <span class="comment">// logging is essential for every project
-    </span>pretty_env_logger::init();
+    std::panic::set_hook(Box::new(cli::panic_set_hook));
+    cli::tracing_init();
 
     <span class="comment">// super simple argument parsing. There are crates that can parse more complex arguments.
     </span><span class="kw">match </span>std::env::args().nth(<span class="number">1</span>).as_deref() {
@@ -115,7 +124,10 @@
                     <span class="comment">// do nothing
                     </span><span class="prelude-val">Ok</span>(()) =&gt; (),
                     <span class="comment">// log error from anyhow
-                    </span><span class="prelude-val">Err</span>(err) =&gt; <span class="macro">println!</span>(<span class="string">"{RED}Error: {err}{RESET}"</span>),
+                    </span><span class="prelude-val">Err</span>(err) =&gt; {
+                        <span class="macro">println!</span>(<span class="string">"{RED}Error: {err}{RESET}"</span>);
+                        <span class="macro">tracing::error!</span>(<span class="string">"{RED}Error: {err}{RESET}"</span>);
+                    }
                 }
             }
             <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class="string">"{RED}Error: Missing arguments `greet_name`.{RESET}"</span>),
