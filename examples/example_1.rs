@@ -14,6 +14,6 @@ fn main() {
     // possible error must be processed
     match format_upper_hello_phrase(greet_name) {
         Ok(phrase) => println!("{}", phrase),
-        Err(err) => log::error!("Error: {}", err),
+        Err(err) => tracing::error!("Error: {}", err),
     }
 }

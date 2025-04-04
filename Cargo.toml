@@ -1,7 +1,7 @@
 [package]
 name = "cargo_auto_template_new_cli"
 # binary executable does not need to be SemVer, because nobody depends on it
-version = "0.0.11"
+version = "0.0.15"
 description = "Basic Rust project template for CLI and library, more than just -cargo new hello-"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
@@ -26,10 +26,13 @@ include = [
 # WARNING: Although dependencies in Cargo.toml look like a specific version of the crate, they are just like a caret version (^x.y.z) and actually specify 
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
 [dependencies]
-log = "0.4.26"
-pretty_env_logger="0.5.0"
 thiserror = "2.0.12"
 anyhow="1.0.97"
+
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time"] }
+tracing-appender="0.2.3"
+time = {version="0.3.39", features=["macros","local-offset"]}
 
 # You can choose which one is the important part of this package: lib or bin.
 # The important part must have the same name as the package.

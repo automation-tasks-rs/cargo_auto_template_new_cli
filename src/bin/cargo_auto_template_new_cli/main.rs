@@ -9,13 +9,16 @@
 // The `main.rs` uses the `anyhow` error library.
 // The `lib.rs` uses the `thiserror` library.
 
+mod bin_cli_functions_mod;
+use bin_cli_functions_mod as cli;
+
 // Linux terminal colors
 use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
 
 /// entry point into the bin-executable
 fn main() {
-    // logging is essential for every project
-    pretty_env_logger::init();
+    std::panic::set_hook(Box::new(cli::panic_set_hook));
+    cli::tracing_init();
 
     // super simple argument parsing. There are crates that can parse more complex arguments.
     match std::env::args().nth(1).as_deref() {
@@ -35,7 +38,10 @@ fn main() {
                     // do nothing
                     Ok(()) => (),
                     // log error from anyhow
-                    Err(err) => println!("{RED}Error: {err}{RESET}"),
+                    Err(err) => {
+                        println!("{RED}Error: {err}{RESET}");
+                        tracing::error!("{RED}Error: {err}{RESET}");
+                    }
                 }
             }
             None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),

@@ -10,18 +10,21 @@
 //! # cargo_auto_template_new_cli
 //!
 //! **Basic Rust project template for CLI and library, more than just -cargo new hello-**  
-//! ***version: 0.0.10 date: 2025-03-30 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+//! ***version: 0.0.15 date: 2025-04-04 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![work-in-progress](https://img.shields.io/badge/work_in_progress-yellow)
 //!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
 //!
+//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  this repo is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
+//!  
 //!   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/blob/main/LICENSE)
 //!   [![Rust](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-103-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-73-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-38-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-167-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-88-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-60-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //!
