@@ -205,7 +205,11 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-  {YELLOW}If ok then run the tests in code and the documentation code examples.{RESET}
+  {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
+    It will show the index.html in VSCode Explorer, then right-click and choose "Show Preview".
+    This works inside the CRUSTDE container, because of the extension "Live Preview" 
+    <https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server>
+    If ok then run the tests in code and the documentation code examples.{RESET}
 {GREEN}cargo auto test{RESET}
 "#
     );
@@ -251,7 +255,7 @@ fn task_publish_to_crates_io() {
 fn task_github_new_release() {
     ts::task_github_new_release();
     println!(
-        r#"  
+        r#"
   {YELLOW}No more automation tasks. {RESET}
 "#
     );

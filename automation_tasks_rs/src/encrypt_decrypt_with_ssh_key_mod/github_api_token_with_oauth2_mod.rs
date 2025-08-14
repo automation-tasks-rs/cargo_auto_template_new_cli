@@ -58,7 +58,7 @@
 //! serde ={ version= "1.0.217", features=["std","derive"]}
 //! serde_json = "1.0.138"
 //! ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-//! ssh_agent_client_rs_git_bash = "0.0.11"
+//! ssh_agent_client_rs_git_bash = "0.0.19"
 //! rsa = { version = "0.9.7", features = ["sha2","pem"] }
 //! zeroize = {version="1.8.1", features=["derive"]}
 //! aes-gcm = "0.10.3"

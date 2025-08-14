@@ -188,13 +188,14 @@ fn sign_seed_with_ssh_agent(
         client: &mut ssh_agent_client_rs_git_bash::Client,
         fingerprint_from_file: &str,
     ) -> anyhow::Result<ssh_key::PublicKey> {
-        let vec_public_key = client.list_identities()?;
+        let vec_identities = client.list_all_identities()?;
+        for identity in vec_identities.iter() {
+            if let ssh_agent_client_rs_git_bash::Identity::PublicKey(public_key) = identity {
+                let fingerprint_from_agent = public_key.key_data().fingerprint(Default::default()).to_string();
 
-        for public_key in vec_public_key.iter() {
-            let fingerprint_from_agent = public_key.key_data().fingerprint(Default::default()).to_string();
-
-            if fingerprint_from_agent == fingerprint_from_file {
-                return Ok(public_key.to_owned());
+                if fingerprint_from_agent == fingerprint_from_file {
+                    return Ok(public_key.clone().into_owned());
+                }
             }
         }
         anyhow::bail!("This private key is not added to ssh-agent.")
