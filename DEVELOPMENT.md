@@ -88,11 +88,14 @@ Cargo-auto will download the template release from
 and the automation_tasks_rs from  
 <https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/download/latest/automation_tasks_rs.tar.gz>
 
+## Info just for me when I modify the template
+
 To create this release use the commands:
 
 ```bash
 sh github_release_prepare.sh
 ```
 
-Then manually create a GitHub release and upload the tar.gz files.
+I cannot upload directly from inside the container. First I copy the file into some Windows folder.  
+Then I manually create a GitHub release and upload the files.  
 Then remove the temporary files.
