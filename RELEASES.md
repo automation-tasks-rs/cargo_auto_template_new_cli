@@ -10,20 +10,6 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
-- return commits
-
-- update
-
-- tracing
-
-## Version 0.0.8 (2025-03-29)
-
-- update automation
-
-## Version 0.0.5 (2025-03-17)
-
-- cargo_auto_lib = 3.0.12
-
 ## Version 0.0.1
 
 - Rust project created with `cargo auto new_cli cargo_auto_template_new_cli`
