@@ -38,7 +38,7 @@ I recommend using the [CRUSTDE - Containerized Rust Development Environment](htt
 Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make a similar command that creates a real-life Rust project.  
 
 ```bash
-cargo auto new_cli project_name
+cargo auto new_cli project_name github_org_or_user
 ```
 
 Extremely simple, just the basic moving parts and use cases.  
