@@ -10,7 +10,7 @@
 //! # cargo_auto_template_new_cli
 //!
 //! **Basic Rust project template for CLI and library, more than just -cargo new hello-**  
-//! ***version: 0.0.12 date: 2025-09-25 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+//! ***version: 0.0.13 date: 2025-09-25 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![work-in-progress](https://img.shields.io/badge/work_in_progress-yellow)
