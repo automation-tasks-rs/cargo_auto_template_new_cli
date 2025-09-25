@@ -14,4 +14,4 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Version 0.0.1
 
-- Rust project created with `cargo auto new_cli cargo_auto_template_new_cli`
+- Rust project created with `cargo auto new_cli cargo_auto_template_new_cli my-github-org-or-user`
