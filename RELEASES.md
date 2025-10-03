@@ -10,8 +10,6 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
-- automation anyhow thiserror
-
 ## Version 0.0.1
 
 - Rust project created with `cargo auto new_cli cargo_auto_template_new_cli my-github-org-or-user`
