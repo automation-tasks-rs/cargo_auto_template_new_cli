@@ -54,7 +54,7 @@ fn main_returns_anyhow_result() -> anyhow::Result<()> {
 // region: match, help and completion
 
 /// match arguments and call tasks functions
-fn match_arguments_and_call_tasks(mut args: std::env::Args)->anyhow::Result<()> {
+fn match_arguments_and_call_tasks(mut args: std::env::Args) -> anyhow::Result<()> {
     // the first argument is the user defined task: (no argument for help), build, release,...
     let arg_1 = args.next();
     match arg_1 {
@@ -90,7 +90,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args)->anyhow::Result<()> 
 }
 
 /// write a comprehensible help for user defined tasks
-fn print_help() ->anyhow::Result<()>{
+fn print_help() -> anyhow::Result<()> {
     println!(
         r#"
   {YELLOW}Welcome to cargo-auto !{RESET}
@@ -142,7 +142,7 @@ fn print_examples_cmd() {
 }
 
 /// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.
-fn completion() ->anyhow::Result<()>{
+fn completion() -> anyhow::Result<()> {
     let args: Vec<String> = std::env::args().collect();
     let word_being_completed = args[2].as_str();
     let last_word = args[3].as_str();
@@ -175,7 +175,7 @@ fn completion() ->anyhow::Result<()>{
 // region: tasks
 
 /// cargo build
-fn task_build()  -> anyhow::Result<()>{
+fn task_build() -> anyhow::Result<()> {
     let cargo_toml = crate::build_cli_bin_mod::task_build()?;
     println!(
         r#"
@@ -197,7 +197,7 @@ fn task_build()  -> anyhow::Result<()>{
 }
 
 /// cargo build --release
-fn task_release()  -> anyhow::Result<()>{
+fn task_release() -> anyhow::Result<()> {
     let cargo_toml = crate::build_cli_bin_mod::task_release()?;
 
     println!(
@@ -220,7 +220,7 @@ fn task_release()  -> anyhow::Result<()>{
 }
 
 /// cargo doc, then copies to /docs/ folder, because this is a GitHub standard folder
-fn task_doc()  -> anyhow::Result<()>{
+fn task_doc() -> anyhow::Result<()> {
     ts::task_doc()?;
     // message to help user with next move
     println!(
@@ -237,7 +237,7 @@ fn task_doc()  -> anyhow::Result<()>{
 }
 
 /// cargo test
-fn task_test()  -> anyhow::Result<()>{
+fn task_test() -> anyhow::Result<()> {
     cl::run_shell_command_static("cargo test").unwrap_or_else(|e| panic!("{e}"));
     println!(
         r#"
@@ -250,7 +250,7 @@ fn task_test()  -> anyhow::Result<()>{
 }
 
 /// commit and push
-fn task_commit_and_push(arg_2: Option<String>)  -> anyhow::Result<()>{
+fn task_commit_and_push(arg_2: Option<String>) -> anyhow::Result<()> {
     ts::task_commit_and_push(arg_2)?;
     println!(
         r#"
@@ -262,16 +262,16 @@ fn task_commit_and_push(arg_2: Option<String>)  -> anyhow::Result<()>{
 }
 
 /// publish to crates.io and git tag
-fn task_publish_to_crates_io()  -> anyhow::Result<()>{
+fn task_publish_to_crates_io() -> anyhow::Result<()> {
     let main_rs_path = CrossPathBuf::new("src/main.rs")?;
 
-    let _tag_name_version = if main_rs_path.exists()  {
+    if main_rs_path.exists() {
         // executable binary
         crate::build_cli_bin_mod::task_publish_to_crates_io()?;
     } else {
         // library
         crate::build_lib_mod::task_publish_to_crates_io()?;
-    };
+    }
 
     println!(
         r#"
@@ -284,7 +284,7 @@ fn task_publish_to_crates_io()  -> anyhow::Result<()>{
 }
 
 /// create a new release on github and uploads binary executables
-fn task_github_new_release()  -> anyhow::Result<()>{
+fn task_github_new_release() -> anyhow::Result<()> {
     ts::task_github_new_release()?;
     println!(
         r#"
