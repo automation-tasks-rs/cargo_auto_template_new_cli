@@ -4,6 +4,7 @@
 
 mod build_cli_bin_mod;
 mod build_cli_bin_win_mod;
+mod build_wasm_mod;
 mod build_lib_mod;
 mod cargo_auto_github_api_mod;
 mod encrypt_decrypt_with_ssh_key_mod;
@@ -11,6 +12,7 @@ mod generic_functions_mod;
 mod tasks_mod;
 
 pub use cargo_auto_lib as cl;
+#[allow(unused_imports)]
 use crossplatform_path::CrossPathBuf;
 
 use crate::cargo_auto_github_api_mod as cgl;
