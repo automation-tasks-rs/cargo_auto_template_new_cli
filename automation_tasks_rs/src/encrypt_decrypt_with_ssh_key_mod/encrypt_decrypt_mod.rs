@@ -296,7 +296,7 @@ pub(crate) fn encrypt_symmetric(
         &nonce,
         secret_string_to_encrypt.expose_secret().as_bytes(),
     ) else {
-        panic!("{RED}Error: Encryption failed. {RESET}");
+        anyhow::bail!("{RED}Error: Encryption failed. {RESET}");
     };
 
     let mut encrypted_bytes = nonce.to_vec();
@@ -326,7 +326,7 @@ pub(crate) fn decrypt_symmetric(
         nonce,
         cipher_text,
     ) else {
-        panic!("{RED}Error: Decryption failed. {RESET}");
+        anyhow::bail!("{RED}Error: Decryption failed. {RESET}");
     };
     let secret_decrypted_string = SecretString::from(String::from_utf8(secret_decrypted_bytes)?);
 
