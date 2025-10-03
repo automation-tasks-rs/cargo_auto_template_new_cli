@@ -15,10 +15,21 @@ use bin_cli_functions_mod as cli;
 // Linux terminal colors
 use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
 
-/// entry point into the bin-executable
-fn main() {
-    std::panic::set_hook(Box::new(cli::panic_set_hook));
-    cli::tracing_init();
+///main returns ExitCode
+fn main() -> std::process::ExitCode {
+    match main_returns_anyhow_result() {
+        Err(err) => {
+            eprintln!("{}", err);
+            // eprintln!("Exit program with failure exit code 1");
+            std::process::ExitCode::FAILURE
+        }
+        Ok(()) => std::process::ExitCode::SUCCESS,
+    }
+}
+
+/// main() returns anyhow::Result
+fn main_returns_anyhow_result() -> anyhow::Result<()> {
+    cli::tracing_init()?;
 
     // super simple argument parsing. There are crates that can parse more complex arguments.
     match std::env::args().nth(1).as_deref() {
@@ -48,6 +59,7 @@ fn main() {
         },
         _ => println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
     }
+    Ok(())
 }
 
 /// print help

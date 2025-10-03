@@ -38,7 +38,7 @@ mod test {
 
     #[test]
     pub fn test_format_upper_hello_phrase() {
-        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
+        assert_eq!(format_upper_hello_phrase("abcd").expect("test"), "Hello ABCD!");
         assert!(format_upper_hello_phrase("ABCD").is_err());
     }
 

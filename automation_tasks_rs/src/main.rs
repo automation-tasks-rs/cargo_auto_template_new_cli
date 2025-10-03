@@ -238,7 +238,7 @@ fn task_doc() -> anyhow::Result<()> {
 
 /// cargo test
 fn task_test() -> anyhow::Result<()> {
-    cl::run_shell_command_static("cargo test").unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("cargo test")?;
     println!(
         r#"
   {YELLOW}After `cargo auto test`. If ok then {RESET}

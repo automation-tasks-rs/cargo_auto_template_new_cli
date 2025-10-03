@@ -22,9 +22,9 @@
 //!   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/blob/main/LICENSE)
 //!   [![Rust](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-167-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-91-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-60-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-157-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-88-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-61-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //!
