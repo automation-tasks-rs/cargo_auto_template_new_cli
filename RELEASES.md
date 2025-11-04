@@ -10,6 +10,8 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
+## Version 0.0.15 (2025-11-04)
+
 - cargo_lib embedded
 
 ## Version 0.0.1
