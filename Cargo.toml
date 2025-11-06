@@ -1,7 +1,7 @@
 [package]
 name = "cargo_auto_template_new_cli"
 # binary executable does not need to be SemVer, because nobody depends on it
-version = "0.0.15"
+version = "0.0.16"
 description = "Basic Rust project template for CLI and library, more than just -cargo new hello-"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"

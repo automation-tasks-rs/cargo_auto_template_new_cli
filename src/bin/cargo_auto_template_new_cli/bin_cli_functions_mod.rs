@@ -24,47 +24,44 @@ pub const BLUE: &str = "\x1b[34m";
 pub const RESET: &str = "\x1b[0m";
 // endregion: Public API constants
 
-/// Initialize tracing to file tmp/logs/cargo_auto_template_new_cli.log
+/// Initialize tracing to file logs/cargo_auto_template_new_cli.log.  \
 ///
-/// The folder tmp/logs/ is in .gitignore and will not be committed.
+/// The folder logs/ is in .gitignore and will not be committed.  
 pub fn tracing_init() -> anyhow::Result<()> {
-    // uncomment this line to enable tracing to file
-    let file_appender = tracing_appender::rolling::daily("tmp/logs", "cargo_auto_template_new_cli.log");
-
     let offset = time::UtcOffset::current_local_offset()?;
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(
         offset,
         time::macros::format_description!("[hour]:[minute]:[second].[subsecond digits:6]"),
     );
 
-    // Filter out logs from: hyper_util, reqwest
     // A filter consists of one or more comma-separated directives
     // target[span{field=value}]=level
-    // examples: tokio::net=info
-    // Levels order: ERROR, WARN, INFO, DEBUG, TRACE
+    // Levels order: 1. ERROR, 2. WARN, 3. INFO, 4. DEBUG, 5. TRACE
     // ERROR level is always logged.
-    // To add other levels use the RUST_LOG environment variable:
+    // Add filters to CARGO_AUTO_TEMPLATE_NEW_CLI_LOG environment variable for a single execution:
     // ```bash
-    // export RUST_LOG=cargo_auto_template_new_cli=warn
-    // export RUST_LOG=cargo_auto_template_new_cli=info
-    // export RUST_LOG=cargo_auto_template_new_cli=debug
-    // export RUST_LOG=cargo_auto_template_new_cli=trace
+    // CARGO_AUTO_TEMPLATE_NEW_CLI_LOG="debug,hyper_util=info,reqwest=info" ./{package_name}
     // ```
-    // Unset the environment variable RUST_LOG:
-    // ```bash
-    // unset RUST_LOG
-    // ```
-    let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse()?)
-        .add_directive("reqwest=error".parse()?);
+    let filter = tracing_subscriber::EnvFilter::from_env("CARGO_AUTO_TEMPLATE_NEW_CLI_LOG");
 
-    tracing_subscriber::fmt()
+    let builder = tracing_subscriber::fmt()
         .with_file(true)
         .with_timer(timer)
         .with_line_number(true)
-        .with_ansi(true)
-        .with_writer(file_appender)
-        .with_env_filter(filter)
-        .init();
+        .with_ansi(false)
+        .with_env_filter(filter);
+    if std::env::var("CARGO_AUTO_TEMPLATE_NEW_CLI_LOG").is_ok() {
+        // if CARGO_AUTO_TEMPLATE_NEW_CLI_LOG exists than enable tracing to file
+        let file_appender = tracing_appender::rolling::RollingFileAppender::builder()
+            .rotation(tracing_appender::rolling::Rotation::DAILY)
+            .filename_prefix("cargo_auto_template_new_cli")
+            .filename_suffix("log")
+            .build("logs")
+            .expect("initializing rolling file appender failed");
+        builder.with_writer(file_appender).init();
+    } else {
+        builder.init();
+    };
+
     Ok(())
 }

@@ -14,8 +14,10 @@ use bin_cli_functions_mod as cli;
 
 // Linux terminal colors
 use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
+// Bring trait for Result into scope.
+use cargo_auto_template_new_cli_lib::ResultLogError;
 
-///main returns ExitCode
+/// Function main() returns ExitCode.
 fn main() -> std::process::ExitCode {
     match main_returns_anyhow_result() {
         Err(err) => {
@@ -27,7 +29,7 @@ fn main() -> std::process::ExitCode {
     }
 }
 
-/// main() returns anyhow::Result
+/// Function main() returns anyhow::Result.
 fn main_returns_anyhow_result() -> anyhow::Result<()> {
     cli::tracing_init()?;
 
@@ -91,7 +93,8 @@ fn print_greet_name(greet_name: &str) {
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
-    let upper = cargo_auto_template_new_cli_lib::format_upper_hello_phrase(greet_name)?;
+    // use the trait ResultErrorLog method log() to append the error to the log file
+    let upper = cargo_auto_template_new_cli_lib::format_upper_hello_phrase(greet_name).log()?;
     println!("{}", upper);
     // return
     Ok(())
