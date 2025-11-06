@@ -10,7 +10,7 @@
 //! # cargo_auto_template_new_cli
 //!
 //! **Basic Rust project template for CLI and library, more than just -cargo new hello-**  
-//! ***version: 0.0.16 date: 2025-11-06 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+//! ***version: 0.0.17 date: 2025-11-06 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![work-in-progress](https://img.shields.io/badge/work_in_progress-yellow)
@@ -22,9 +22,9 @@
 //!   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/blob/main/LICENSE)
 //!   [![Rust](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-176-green.svg)]()
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-90-blue.svg)]()
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-54-purple.svg)]()
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-182-green.svg)]()
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-93-blue.svg)]()
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-56-purple.svg)]()
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)]()
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)]()
 //!
@@ -105,14 +105,12 @@ pub const RESET: &str = "\x1b[0m";
 
 /// Trait to log the error from Result before propagation with ?.
 pub trait ResultLogError<T, E>: Sized {
-    fn log(self) -> Self;
+    fn log(self, file_line_column: &str) -> Self;
 }
 
 /// Implements LogError for anyhow::Result.
 impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
-    #[inline(always)]
-    #[track_caller]
-    fn log(self) -> Self {
-        self.inspect_err(|err| tracing::error!(?err))
+    fn log(self, file_line_column: &str) -> Self {
+        self.inspect_err(|err| tracing::error!("{} {:?}", file_line_column, err))
     }
 }

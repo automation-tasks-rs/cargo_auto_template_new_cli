@@ -9,11 +9,13 @@
 // The `main.rs` uses the `anyhow` error library.
 // The `lib.rs` uses the `thiserror` library.
 
+#[macro_use]
 mod bin_cli_functions_mod;
-use bin_cli_functions_mod as cli;
 
 // Linux terminal colors
 use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
+
+use bin_cli_functions_mod::pos;
 // Bring trait for Result into scope.
 use cargo_auto_template_new_cli_lib::ResultLogError;
 
@@ -31,7 +33,7 @@ fn main() -> std::process::ExitCode {
 
 /// Function main() returns anyhow::Result.
 fn main_returns_anyhow_result() -> anyhow::Result<()> {
-    cli::tracing_init()?;
+    bin_cli_functions_mod::tracing_init()?;
 
     // super simple argument parsing. There are crates that can parse more complex arguments.
     match std::env::args().nth(1).as_deref() {
@@ -94,7 +96,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     // use the trait ResultErrorLog method log() to append the error to the log file
-    let upper = cargo_auto_template_new_cli_lib::format_upper_hello_phrase(greet_name).log()?;
+    let upper = cargo_auto_template_new_cli_lib::format_upper_hello_phrase(greet_name).log(pos!())?;
     println!("{}", upper);
     // return
     Ok(())

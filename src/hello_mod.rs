@@ -18,7 +18,6 @@ pub fn format_upper_hello_phrase(greet_name: &str) -> Result<String, crate::Libr
     // shadowing the same variable name:
     let upper_greet_name = make_uppercase(greet_name);
     if upper_greet_name == greet_name {
-        tracing::error!("LibraryError::Uppercase {greet_name}");
         return Err(crate::LibraryError::Uppercase(greet_name.to_string()));
     }
 

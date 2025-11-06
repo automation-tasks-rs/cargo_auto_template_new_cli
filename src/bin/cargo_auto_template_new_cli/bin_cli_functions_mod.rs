@@ -65,3 +65,15 @@ pub fn tracing_init() -> anyhow::Result<()> {
 
     Ok(())
 }
+
+/// macro to get source code position to log errors before propagation
+///
+/// example:  read_to_string("x").log(pos!())?;
+macro_rules! pos {
+    // `()` indicates that the macro takes no argument.
+    () => {
+        // The macro will expand into the contents of this block.
+        &format!("{}:{}:{}:", file!(), line!(), column!())
+    };
+}
+pub(crate) use pos;
