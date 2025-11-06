@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":["BLUE","GREEN","RED","RESET","YELLOW"],"fn":["tracing_init"]};
+window.SIDEBAR_ITEMS = {"constant":["BLUE","GREEN","RED","RESET","YELLOW"],"fn":["tracing_init"],"macro":["pos"]};
