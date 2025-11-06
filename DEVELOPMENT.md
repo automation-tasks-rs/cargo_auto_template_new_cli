@@ -99,3 +99,19 @@ sh github_release_prepare.sh
 I cannot upload directly from inside the container. First I copy the file into some Windows folder.  
 Then I manually create a GitHub release and upload the files.  
 Then remove the temporary files.
+
+## Debug with tracing and log to file
+
+For debugging purposes the program has tracing and log to file.  
+If the environment variable CARGO_AUTO_TEMPLATE_NEW_CLI_LOG exists than the tracing to file is enabled.  
+The log is appended to files in the local `logs/` folder.  
+In the env var CARGO_AUTO_TEMPLATE_NEW_CLI_LOG we can define filters.  
+A filter consists of one or more comma-separated directives
+target[span{field=value}]=level
+Levels order: 1. ERROR, 2. WARN, 3. INFO, 4. DEBUG, 5. TRACE
+ERROR level is always logged.
+Example of filter for a single execution:
+
+```bash
+CARGO_AUTO_TEMPLATE_NEW_CLI_LOG="debug,hyper_util=info,reqwest=info" ./{package_name}
+```
