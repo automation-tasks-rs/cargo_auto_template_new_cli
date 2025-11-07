@@ -47,7 +47,7 @@ pub fn process_git_remote() -> String {
     /// println!("{}", &output);
     fn regex_capture(output: String) -> Result<String> {
         let reg = regex::Regex::new(
-            r#"origin\s*(?:https://).log(pos!())?(?:git@).log(pos!())?([^:/]*?)[:/]([^/]*?)/([^. ]*?)(?:\.git).log(pos!())?\s*\(fetch\)"#,
+            r#"origin\s*(?:https://)?(?:git@)?([^:/]*?)[:/]([^/]*?)/([^. ]*?)(?:\.git)?\s*\(fetch\)"#,
         )
         .log(pos!())?;
         let cap = reg
