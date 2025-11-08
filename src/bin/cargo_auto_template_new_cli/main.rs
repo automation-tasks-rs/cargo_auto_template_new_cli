@@ -10,12 +10,12 @@
 // The `lib.rs` uses the `thiserror` library.
 
 #[macro_use]
-mod bin_cli_functions_mod;
+mod utils_mod;
 
 // Linux terminal colors
 use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
 
-use bin_cli_functions_mod::pos;
+use utils_mod::pos;
 // Bring trait for Result into scope.
 use cargo_auto_template_new_cli_lib::ResultLogError;
 
@@ -33,7 +33,7 @@ fn main() -> std::process::ExitCode {
 
 /// Function main() returns anyhow::Result.
 fn main_returns_anyhow_result() -> anyhow::Result<()> {
-    bin_cli_functions_mod::tracing_init()?;
+    utils_mod::tracing_init()?;
 
     // super simple argument parsing. There are crates that can parse more complex arguments.
     match std::env::args().nth(1).as_deref() {

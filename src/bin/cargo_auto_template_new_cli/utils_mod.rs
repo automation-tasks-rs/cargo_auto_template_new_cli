@@ -1,4 +1,4 @@
-// bin_cli_functions.rs
+// utils_mod.rs
 
 //! Functions to work with CLI binary executable projects.
 //!

@@ -1,6 +1,6 @@
-// generic_functions_mod.rs
+// utils_mod.rs
 
-//! Generic functions that does not usually change.
+//! Helper functions that does not usually change.
 //!
 //! Don't change this code, so it can be updated regularly with
 //! cargo auto update_automation_tasks_rs
