@@ -10,7 +10,7 @@
 <a href=#10 id=10 data-nosnippet>10</a></span><span class="doccomment">//! # cargo_auto_template_new_cli
 <a href=#11 id=11 data-nosnippet>11</a>//!
 <a href=#12 id=12 data-nosnippet>12</a>//! **Basic Rust project template for CLI and library, more than just -cargo new hello-**  
-<a href=#13 id=13 data-nosnippet>13</a>//! ***version: 0.0.18 date: 2025-11-08 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+<a href=#13 id=13 data-nosnippet>13</a>//! ***version: 0.0.19 date: 2025-11-08 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 <a href=#14 id=14 data-nosnippet>14</a>//!
 <a href=#15 id=15 data-nosnippet>15</a>//!  ![maintained](https://img.shields.io/badge/maintained-green)
 <a href=#16 id=16 data-nosnippet>16</a>//!  ![work-in-progress](https://img.shields.io/badge/work_in_progress-yellow)
@@ -111,6 +111,6 @@
 <a href=#111 id=111 data-nosnippet>111</a><span class="doccomment">/// Implements LogError for anyhow::Result.
 <a href=#112 id=112 data-nosnippet>112</a></span><span class="kw">impl</span>&lt;T, E: std::fmt::Debug&gt; ResultLogError&lt;T, E&gt; <span class="kw">for </span>core::result::Result&lt;T, E&gt; {
 <a href=#113 id=113 data-nosnippet>113</a>    <span class="kw">fn </span>log(<span class="self">self</span>, file_line_column: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
-<a href=#114 id=114 data-nosnippet>114</a>        <span class="self">self</span>.inspect_err(|err| <span class="macro">tracing::error!</span>(<span class="string">"{} {:?}"</span>, file_line_column, err))
+<a href=#114 id=114 data-nosnippet>114</a>        <span class="self">self</span>.inspect_err(|err| <span class="macro">tracing::debug!</span>(<span class="string">"{} {:?}"</span>, file_line_column, err))
 <a href=#115 id=115 data-nosnippet>115</a>    }
 <a href=#116 id=116 data-nosnippet>116</a>}</code></pre></div></section></main></body></html>
