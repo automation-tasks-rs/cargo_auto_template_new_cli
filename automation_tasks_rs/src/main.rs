@@ -196,7 +196,7 @@ fn task_build() -> anyhow::Result<()> {
 {GREEN}{package_name} upper world{RESET}
   {YELLOW}If ok then{RESET}
 {GREEN}{package_name} upper WORLD{RESET}
-  {YELLOW}if {package_name} ok then{RESET}
+  {YELLOW}If {package_name} ok then{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -219,7 +219,7 @@ fn task_release() -> anyhow::Result<()> {
 {GREEN}{package_name} upper world{RESET}
   {YELLOW}If ok then{RESET}
 {GREEN}{package_name} upper WORLD{RESET}
-  {YELLOW}if {package_name} ok then{RESET}
+  {YELLOW}If {package_name} ok then{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,
         package_name = cargo_toml.package_name(),
