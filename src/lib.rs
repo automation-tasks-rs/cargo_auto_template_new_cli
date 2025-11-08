@@ -10,7 +10,7 @@
 //! # cargo_auto_template_new_cli
 //!
 //! **Basic Rust project template for CLI and library, more than just -cargo new hello-**  
-//! ***version: 0.0.18 date: 2025-11-08 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+//! ***version: 0.0.19 date: 2025-11-08 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![work-in-progress](https://img.shields.io/badge/work_in_progress-yellow)
@@ -111,6 +111,6 @@ pub trait ResultLogError<T, E>: Sized {
 /// Implements LogError for anyhow::Result.
 impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
     fn log(self, file_line_column: &str) -> Self {
-        self.inspect_err(|err| tracing::error!("{} {:?}", file_line_column, err))
+        self.inspect_err(|err| tracing::debug!("{} {:?}", file_line_column, err))
     }
 }

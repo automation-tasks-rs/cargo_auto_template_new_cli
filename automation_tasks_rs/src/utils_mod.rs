@@ -72,6 +72,6 @@ pub trait ResultLogError<T, E>: Sized {
 /// Implements LogError for anyhow::Result.
 impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
     fn log(self, file_line_column: &str) -> Self {
-        self.inspect_err(|err| tracing::error!("automation_tasks_rs/{} {:?}", file_line_column, err))
+        self.inspect_err(|err| tracing::debug!("automation_tasks_rs/{} {:?}", file_line_column, err))
     }
 }
