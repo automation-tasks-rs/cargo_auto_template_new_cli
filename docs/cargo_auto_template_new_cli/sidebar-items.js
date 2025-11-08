@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["main","main_returns_anyhow_result","print_greet_name","print_help","upper_greet_name"],"mod":["bin_cli_functions_mod"]};
+window.SIDEBAR_ITEMS = {"fn":["main","main_returns_anyhow_result","print_greet_name","print_help","upper_greet_name"],"mod":["utils_mod"]};

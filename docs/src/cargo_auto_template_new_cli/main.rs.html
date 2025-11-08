@@ -10,12 +10,12 @@
 <a href=#10 id=10 data-nosnippet>10</a>// The `lib.rs` uses the `thiserror` library.
 <a href=#11 id=11 data-nosnippet>11</a>
 <a href=#12 id=12 data-nosnippet>12</a></span><span class="attr">#[macro_use]
-<a href=#13 id=13 data-nosnippet>13</a></span><span class="kw">mod </span>bin_cli_functions_mod;
+<a href=#13 id=13 data-nosnippet>13</a></span><span class="kw">mod </span>utils_mod;
 <a href=#14 id=14 data-nosnippet>14</a>
 <a href=#15 id=15 data-nosnippet>15</a><span class="comment">// Linux terminal colors
 <a href=#16 id=16 data-nosnippet>16</a></span><span class="kw">use </span>cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
 <a href=#17 id=17 data-nosnippet>17</a>
-<a href=#18 id=18 data-nosnippet>18</a><span class="kw">use </span>bin_cli_functions_mod::pos;
+<a href=#18 id=18 data-nosnippet>18</a><span class="kw">use </span>utils_mod::pos;
 <a href=#19 id=19 data-nosnippet>19</a><span class="comment">// Bring trait for Result into scope.
 <a href=#20 id=20 data-nosnippet>20</a></span><span class="kw">use </span>cargo_auto_template_new_cli_lib::ResultLogError;
 <a href=#21 id=21 data-nosnippet>21</a>
@@ -33,7 +33,7 @@
 <a href=#33 id=33 data-nosnippet>33</a>
 <a href=#34 id=34 data-nosnippet>34</a><span class="doccomment">/// Function main() returns anyhow::Result.
 <a href=#35 id=35 data-nosnippet>35</a></span><span class="kw">fn </span>main_returns_anyhow_result() -&gt; anyhow::Result&lt;()&gt; {
-<a href=#36 id=36 data-nosnippet>36</a>    bin_cli_functions_mod::tracing_init()<span class="question-mark">?</span>;
+<a href=#36 id=36 data-nosnippet>36</a>    utils_mod::tracing_init()<span class="question-mark">?</span>;
 <a href=#37 id=37 data-nosnippet>37</a>
 <a href=#38 id=38 data-nosnippet>38</a>    <span class="comment">// super simple argument parsing. There are crates that can parse more complex arguments.
 <a href=#39 id=39 data-nosnippet>39</a>    </span><span class="kw">match </span>std::env::args().nth(<span class="number">1</span>).as_deref() {
